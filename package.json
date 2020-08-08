@@ -33,6 +33,7 @@
     "moment": "2.18.1",
     "node-sass": "4.14.1",
     "normalize.css": "7.0.0",
+    "numeral": "2.0.6",
     "raf": "3.3.2",
     "react": "16.0.0",
     "react-addons-shallow-compare": "15.6.0",
@@ -50,7 +51,6 @@
     "validator": "8.0.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
-    
   },
   "devDependencies": {
     "enzyme": "3.0.0",
