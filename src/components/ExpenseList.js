@@ -3,8 +3,10 @@ import {connect} from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
 import selectedExpenses from '../selectors/expenses';
 
-export const ExpenseList = (props) => (
-    <div>
+export const ExpenseList = (props) => {
+    console.log(props);
+    return(
+        <div>
         {
             props.expenses.length === 0? (<p>No expenses</p>
                 ) : (
@@ -12,8 +14,9 @@ export const ExpenseList = (props) => (
                         return <ExpenseListItem key={expense.id} {...expense}/>;
                     }))
         }
-    </div>
-);
+        </div>
+    )
+};
 
 const mapStateToProps = (state) =>{
     //the filtered expenses are being shown now with the call to the selected expenses func
