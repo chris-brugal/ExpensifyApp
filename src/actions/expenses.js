@@ -1,15 +1,16 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
 
+//using thunk it created async actions like a firebase data call
+//use dispatch to change the store
+
 //ADD_EXPENSE
 export const addExpense = (expense) =>({
     type: 'ADD_EXPENSE',
     expense
 });
 
-
-//using thunk it created async actions like a firebase data call
-//use dispatch to change the store
+//START_ADD_EXPENSE
 export const startAddExpense = (expenseData = {}) => {
     return (dispatch) => {
         const {
@@ -36,17 +37,45 @@ export const startAddExpense = (expenseData = {}) => {
     }
 };
 
+
 //REMOVE_EXPENSE
 export const removeExpense = ({id}={}) =>({
     type: 'REMOVE_EXPENSE',
     id
 });
+
+//START_REMOVE_EXPENSES
+export const startRemoveExpenses = ({id} = {}) => {
+    //removes the specific expense in the database, then it dispatches remv exp on store
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`)
+        .remove()
+        .then(()  => {
+            dispatch(removeExpense({id}));
+        });
+    }
+};
+
+
 //EDIT_EXPENSE  
 export const editExpense = (id, updates) =>({
     type: 'EDIT_EXPENSE',
     id,
     updates
 });
+
+//START_EDIT_EXPENSES
+export const startEditExpenses = (id, updates) => {
+    //removes the specific expense in the database, then it dispatches remv exp on store
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`)
+        .update({...updates})
+        .then(()  => {
+            dispatch(editExpense(id, updates));
+        });
+    }
+};
+
 
 //SET_EXPENSES
 export const setExpenses = (expenses) => {
@@ -56,6 +85,7 @@ export const setExpenses = (expenses) => {
     }
 };
 
+//START_SET_EXPENSES
 export const startSetExpenses = () => {
     return (dispatch) => {
         return database.ref('expenses')
