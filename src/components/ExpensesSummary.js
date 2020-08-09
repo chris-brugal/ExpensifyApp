@@ -5,7 +5,6 @@ import expensesTotal from '../selectors/expenses-total';
 import numeral from 'numeral'
 
 const ExpenseSummary = (props) =>{
-    console.log(props);
     return(
         <div> 
             {
