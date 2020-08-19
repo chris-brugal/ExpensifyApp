@@ -18,3 +18,8 @@
     @extend .button;
     background: #888;
 }
+
+.button--bottom{
+    @extend .button;
+   margin-top: 10px;
+}
